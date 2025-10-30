@@ -67,7 +67,7 @@
     .btn-primary:hover{background:var(--accent-2); color:#041e10;}
     .btn-ghost{background:transparent; color:var(--text); border:1px solid var(--ring);}
     .result{margin-top:22px; display:grid; gap:14px; grid-template-columns:1fr;}
-    @media(min-width:720px){.result{grid-template-columns:repeat(4,1fr);}}
+    @media(min-width:720px){.result{grid-template-columns:repeat(3,1fr);}}
     .tile{background:var(--tile); border:1px solid var(--ring); border-radius:12px; padding:16px; transition:background .2s ease,border-color .2s ease;}
     .k{color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.06em}
     .v{font-size:clamp(18px,3vw,22px); font-weight:700; margin-top:6px}
@@ -180,18 +180,16 @@
 
       const percentual = salario * 0.25;
       const totalMeses = mesesAtrasados + tempoProcesso;
-      const valorFinal = totalMeses * percentual;
-      const valorLiquido = valorFinal * 0.5; // desconto de 50%
+      const valorFinal = totalMeses * percentual * 0.5; // COM 50% de desconto
 
       $("percentual").textContent = fmtBRL.format(percentual);
       $("totalMeses").textContent = totalMeses;
       $("valorFinal").textContent = fmtBRL.format(valorFinal);
-      $("valorLiquido").textContent = fmtBRL.format(valorLiquido);
     }
 
     function limpar() {
       ["salario","mesesAtrasados","tempoProcesso"].forEach(id => $(id).value = "");
-      ["percentual","totalMeses","valorFinal","valorLiquido"].forEach(id => $(id).textContent = "—");
+      ["percentual","totalMeses","valorFinal"].forEach(id => $(id).textContent = "—");
     }
 
     $("btnCalcular").addEventListener("click", calcular);
